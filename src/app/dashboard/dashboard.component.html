@@ -1,0 +1,35 @@
+<div class="container responsive-grid">
+    <mat-card *ngFor="let card of existingUsers" appearance="outlined">
+      <mat-card-header>
+        <mat-card-title>{{ card.username }} </mat-card-title>
+      </mat-card-header>
+      <mat-card-actions>
+       <button  (click)="onEdit()">Edit</button>
+       <button (click)="onDelete()">Delete</button>
+      </mat-card-actions>
+      <br/>
+      <mat-card-content>
+        <br />
+        <div>
+            <label for="name">name</label> {{card.name}} <br />
+              <label for="username">Email</label>{{card.email}} <br />
+              <div>
+                  Address
+                  <div>
+                      <label for="street">Street</label> {{card.address.street}} <br />
+                  </div>
+                  <div>
+                      <label for="suite">Suite</label> {{card.address.suite}} <br />
+                  </div>
+                  <div>
+                      <label for="city">City</label>{{card.address.city}} <br />
+                  </div>
+                  <div >
+                      <label for="zipcode">Pin Code</label>{{card.address.zipcode}} <br />
+                  </div>
+              </div>
+            </div>
+      </mat-card-content>
+   
+    </mat-card>
+  </div>
