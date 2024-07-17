@@ -1,32 +1,38 @@
 import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { BrowserModule, provideClientHydration } from '@angular/platform-browser';
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { UserComponent } from './user/user.component';
+import { AddUserComponent } from './add-user/add-user.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { CommonModule } from '@angular/common';
+import { EditUserComponent } from './edit-user/edit-user.component';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+
 import { MatCardModule } from '@angular/material/card';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
-import { UserService } from './user/userService'
+
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
     AppComponent,
-    UserComponent,
-    DashboardComponent
+    AddUserComponent,
+    DashboardComponent,
+    EditUserComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    ReactiveFormsModule,
-    CommonModule,
-     MatCardModule,
-      MatToolbarModule,
-       MatButtonModule
+    MatCardModule,
+    MatToolbarModule,
+    MatButtonModule,
+    ReactiveFormsModule
   ],
-  providers: [UserService],
+  providers: [
+    provideClientHydration(),
+    provideAnimationsAsync()
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

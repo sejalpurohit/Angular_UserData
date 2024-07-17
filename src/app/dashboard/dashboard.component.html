@@ -1,11 +1,11 @@
 <div class="container responsive-grid">
-    <mat-card *ngFor="let card of existingUsers" appearance="outlined">
+    <mat-card *ngFor="let card of existingUsers ; let i = index" appearance="outlined">
       <mat-card-header>
         <mat-card-title>{{ card.username }} </mat-card-title>
       </mat-card-header>
       <mat-card-actions>
-       <button  (click)="onEdit()">Edit</button>
-       <button (click)="onDelete()">Delete</button>
+       <button (click)="onEdit(i, card)" >Edit</button>
+       <button (click)="onDelete(i)">Delete</button>
       </mat-card-actions>
       <br/>
       <mat-card-content>
