@@ -1,0 +1,44 @@
+<div>
+  <mat-card style="max-width: 480px" appearance="outlined">
+    <mat-card-content>
+      <div>
+        <form [formGroup]="addUserFrom">
+          <div>
+            <label for="username">User Name</label>
+            <input type="text" id="username" formControlName="username" />
+          </div>
+          <div>
+            <label for="name">Name</label>
+            <input type="text" id="name" formControlName="name" />
+          </div>
+          <div>
+            <label for="email">Email </label>
+            <input type="text" id="email" formControlName="email" />
+          </div>
+          <div formGroupName="address">
+            Address
+            <div class="form-group">
+              <label for="street">Street</label>
+              <input type="text" name="street" formControlName="street" />
+            </div>
+            <div class="form-group">
+              <label for="suite">Suite</label>
+              <input type="text" name="suite" formControlName="suite" />
+            </div>
+            <div class="form-group">
+              <label for="city">City</label>
+              <input type="text" name="city" formControlName="city" />
+            </div>
+            <div class="form-group">
+              <label for="zipcode">Pin Code</label>
+              <input type="text" name="zipcode" formControlName="zipcode" />
+            </div>
+          </div>
+          <div>
+            <button type="submit" (click)="onSubmitUser()">Submit</button>
+          </div>
+        </form>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>

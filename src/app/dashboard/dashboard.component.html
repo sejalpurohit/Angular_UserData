@@ -1,35 +1,46 @@
+<div>
+  <header>
+    <button (click)="routeToAddUser()">Add User</button>
+  </header>
+</div>
 <div class="container responsive-grid">
-    <mat-card *ngFor="let card of existingUsers ; let i = index" appearance="outlined">
-      <mat-card-header>
-        <mat-card-title>{{ card.username }} </mat-card-title>
-      </mat-card-header>
-      <mat-card-actions>
-       <button (click)="onEdit(i, card)" >Edit</button>
-       <button (click)="onDelete(i)">Delete</button>
-      </mat-card-actions>
-      <br/>
-      <mat-card-content>
-        <br />
+  <mat-card *ngFor="let users of existingUsers; let index = index">
+    <mat-card-header>
+      <mat-card-title>{{ users.name }}</mat-card-title>
+    </mat-card-header>
+    <mat-card-actions>
+      <button (click)="editUser(index, users)">Edit User</button>
+      <button (click)="deleteUser(index)">Delete User</button>
+    </mat-card-actions>
+    <br />
+    <mat-card-content>
+      <br />
+      <div>
+        <strong><label for="name">Name</label></strong> {{ users.username
+        }}<br />
+        <strong><label for="username">Email</label></strong> {{ users.email
+        }}<br />
         <div>
-            <label for="name">name</label> {{card.name}} <br />
-              <label for="username">Email</label>{{card.email}} <br />
-              <div>
-                  Address
-                  <div>
-                      <label for="street">Street</label> {{card.address.street}} <br />
-                  </div>
-                  <div>
-                      <label for="suite">Suite</label> {{card.address.suite}} <br />
-                  </div>
-                  <div>
-                      <label for="city">City</label>{{card.address.city}} <br />
-                  </div>
-                  <div >
-                      <label for="zipcode">Pin Code</label>{{card.address.zipcode}} <br />
-                  </div>
-              </div>
-            </div>
-      </mat-card-content>
-   
-    </mat-card>
-  </div>
+          <strong> Address</strong>
+          <div>
+            <strong><label for="street">Street</label></strong>
+            {{ users.address.street }}<br />
+          </div>
+          <div>
+            <strong><label for="suite">Suite</label></strong>
+            {{ users.address.suite }}<br />
+          </div>
+          <div>
+            <strong
+              ><label for="city">City</label> {{ users.address.city }}</strong
+            ><br />
+          </div>
+          <div>
+            <strong><label for="zipcode">PinCode</label> </strong
+            >{{ users.address.zipcode }}<br />
+          </div>
+        </div>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>

@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "userManagement": {
+    "user_management": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -23,7 +23,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/user-management",
+            "outputPath": "dist/user_management",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": [
@@ -40,10 +40,8 @@
             ],
             "scripts": [],
             "server": "src/main.server.ts",
-            "prerender": true,
-            "ssr": {
-              "entry": "server.ts"
-            }
+            "prerender": false,
+            "ssr": false
           },
           "configurations": {
             "production": {
@@ -73,10 +71,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "userManagement:build:production"
+              "buildTarget": "user_management:build:production"
             },
             "development": {
-              "buildTarget": "userManagement:build:development"
+              "buildTarget": "user_management:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -84,7 +82,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "buildTarget": "userManagement:build"
+            "buildTarget": "user_management:build"
           }
         },
         "test": {

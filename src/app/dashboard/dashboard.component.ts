@@ -1,59 +1,52 @@
 import { Component, OnInit } from '@angular/core';
-import userData from '../helper/userData.json';
-import { from, Observable, of } from 'rxjs';
-import { UserServiceService } from '../user-service.service';
-import { Injectable } from '@angular/core';
+import { UserserviceService } from '../userservice.service';
+import { User } from '../users/userTemplate';
 import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
-  styleUrl: './dashboard.component.css'
+  styleUrl: './dashboard.component.css',
 })
 export class DashboardComponent implements OnInit {
-  existingUsers: any[] = [];
-  http: any;
-  url: string = "app/helper/userData.json"
+  existingUsers: User[] = [];
 
-
-
-  constructor(private service: UserServiceService,private router:Router) { }
-
-
-
+  constructor(
+    private userservice: UserserviceService,
+    private routerService: Router
+  ) {}
   ngOnInit(): void {
-    this.existingUsers = JSON.parse(localStorage.getItem('userData') || '{}');
-
-    this.service.newUserSubject.subscribe(user => {
-      if(user != null){
-        this.existingUsers.push(user[0]);
-        localStorage.setItem('userData', JSON.stringify(this.existingUsers));
-      }
-    })
-
-    this.service.newUserSubject.unsubscribe()
-    let a = JSON.stringify(this.existingUsers)
-
-  }
-
-  // saveText(text: string, filename: string) {
-  //   var a = document.createElement('a');
-  //   a.setAttribute('href', 'data:text/plain;charset=utf-u,' + encodeURIComponent(text));
-  //   a.setAttribute('download', filename);
-  //   a.click()
-  // }
-
-  onDelete(index: number) {
-   this.existingUsers.splice(index, 1)
-   localStorage.setItem("userData", JSON.stringify(this.existingUsers))
-  }
-
-
-  onEdit(index: number, item: any) {
-
-    this.service.editToUser(item)
-    this.router.navigateByUrl('/editUser')
     
+    // this.existingUsers = JSON.parse(
+    //   sessionStorage.getItem('usersData') || '{}'
+    // );
 
+    const storedUsers = sessionStorage.getItem('usersData');
+    this.existingUsers = storedUsers ? JSON.parse(storedUsers) : [];
+
+    this.userservice.newUserSubject.subscribe((user:any[]) => {
+      if (user.length >= 1) {
+        this.existingUsers.push(user[user.length - 1]);
+      }
+    });
+
+    sessionStorage.setItem('usersData', JSON.stringify(this.existingUsers));
   }
+
+  routeToAddUser() {
+    this.routerService.navigateByUrl('/dashboard/adduser');
+  }
+
+  deleteUser(index: number) {
+    this.existingUsers.splice(index, 1);
+    sessionStorage.setItem('usersData', JSON.stringify(this.existingUsers));
+  }
+
+  editUser(index: number, users: any) {
+    this.userservice.editUserFn(users);
+
+    this.routerService.navigateByUrl('/dashboard/edituser');
+  }
+
+  ngOnDestory() {}
 }

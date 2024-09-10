@@ -3,31 +3,27 @@ import { BrowserModule, provideClientHydration } from '@angular/platform-browser
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { AddUserComponent } from './add-user/add-user.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { EditUserComponent } from './edit-user/edit-user.component';
+import { AdduserComponent } from './dashboard/adduser/adduser.component';
+import { EdituserComponent } from './dashboard/edituser/edituser.component';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 
-import { MatCardModule } from '@angular/material/card';
-import { MatToolbarModule } from '@angular/material/toolbar';
-import { MatButtonModule } from '@angular/material/button';
+import {MatCardModule} from '@angular/material/card';
 
 import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
     AppComponent,
-    AddUserComponent,
     DashboardComponent,
-    EditUserComponent
+    AdduserComponent,
+    EdituserComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     MatCardModule,
-    MatToolbarModule,
-    MatButtonModule,
-    ReactiveFormsModule
+    ReactiveFormsModule.withConfig({warnOnNgModelWithFormControl: 'never'}),
   ],
   providers: [
     provideClientHydration(),
