@@ -8,12 +8,13 @@ The project is meant to be a very minimilist POC to test Session Storage, Routin
 TODO: Improve UI :) 
 
 ## Demo
+> **Demo** ![demo](images/basic-demo.gif)
 
 > **Dashboard** ![Dashboard](images/dashboard.png)
 
 > **AddUser** ![addUser](images/addUser.png)
 
-> **Demo** ![demo](images/basic-demo.gif)
+
 
 
 ## Build
